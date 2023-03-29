@@ -1,7 +1,15 @@
 import ReactLoading from 'react-loading';
 import './styles.scss';
 
-export default function Spinner({ text }) {
+export default function Spinner({ text, show }) {
+  if (!show) {
+    return null;
+  }
+  
+  if (!text) {
+    text = 'Loading...';
+  }
+
   return (
     <div className='loading-component'>
       <div className='content'>

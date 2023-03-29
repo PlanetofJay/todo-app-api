@@ -62,8 +62,8 @@ export default function App() {
     <>
       <Header />
       <main className="page">
-        <Spinner />
-        
+        <Spinner show={false} />
+
         {/* Set the app routes */}
         <Routes>
           <Route path="/" element={

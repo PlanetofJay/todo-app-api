@@ -7,7 +7,7 @@ export default function Header() {
     <>
       <header>
         <div className='title'><FaTasks /> Todo App</div>
-        <div className='author'>by John Doe</div>
+        <div className='author'>by Jay Lee</div>
       </header>
       <MainMenu />
     </>

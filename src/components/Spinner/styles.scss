@@ -5,4 +5,14 @@
   top: 0;
   bottom: 0;
   right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content span {
+    display: block;
+    text-align: center;
+    margin-top: 0.5rem;
+    font-size: 1.25rem;
+  }
 }

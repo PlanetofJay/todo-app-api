@@ -25,15 +25,20 @@ export default function Form({ onAddTask }) {
         done: status === 'completed'
       }
 
-      restAPI.add(newTask);
+      const result = restAPI.add(newTask);
+      console.log('Result:', result);
+      if (result.success) {
+        // Add the task.
+        onAddTask(newTask);
 
-      // Add the task.
-      onAddTask(newTask);
-
-      // Reset the form state.
-      setDescription('')
-      setStatus(false);
-      setErrorMessage('');
+        // Reset the form state.
+        setDescription('')
+        setStatus(false);
+        setErrorMessage('');
+      }
+      else {
+        setErrorMessage(result.error);
+      }
     }
   }
 

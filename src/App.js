@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import uuid from "react-uuid";
 
 import Header from "./components/Header";
 import Tasks from "./components/Tasks";
@@ -17,14 +16,16 @@ import NotFound from "./components/NotFound";
 import Spinner from "./components/Spinner";
 import ErrorMessage from "./components/ErrorMessage";
 
+import * as restAPI from './restapi';
+
 export default function App() {
 
   // Sets the initial state.
-  const [tasks, setTasks] = useState([
-    { id: uuid(), description: "Walk the dog", done: true },
-    { id: uuid(), description: "Wash the car", done: false },
-    { id: uuid(), description: "Finish the app", done: false }
-  ]);
+  const [tasks, setTasks] = useState([]);
+
+  useEffect(() => {
+    restAPI.read();
+  }, []);
 
   // Adds a task.
   const handleAddTask = (newTask) => {

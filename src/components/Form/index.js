@@ -2,6 +2,7 @@ import { useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import uuid from 'react-uuid/uuid';
 import './styles.scss';
+import * as restAPI from '../../restapi';
 
 export default function Form({ onAddTask }) {
   const [description, setDescription] = useState('');
@@ -23,6 +24,8 @@ export default function Form({ onAddTask }) {
         description: description,
         done: status === 'completed'
       }
+
+      restAPI.add(newTask);
 
       // Add the task.
       onAddTask(newTask);

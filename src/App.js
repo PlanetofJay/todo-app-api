@@ -22,9 +22,21 @@ export default function App() {
 
   // Sets the initial state.
   const [tasks, setTasks] = useState([]);
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    restAPI.read();
+    (async () => {
+      const result = await restAPI.read();
+      if (result.success) {
+        // Do something
+      }
+      else {
+        setError(result.error);
+      }
+
+      setIsLoading(false);
+    })();
   }, []);
 
   // Adds a task.
@@ -64,8 +76,8 @@ export default function App() {
     <>
       <Header />
       <main className="page">
-        <Spinner show={false} />
-        <ErrorMessage error='' />
+        <Spinner show={isLoading} />
+        <ErrorMessage error={error} />
 
         {/* Set the app routes */}
         <Routes>

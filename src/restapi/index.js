@@ -12,7 +12,13 @@ const axiosInstance = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com'
 });
 
-// GET requests
+/**
+ * GET requests
+ * for retrieving all tasks from the API.
+ * 
+ * for retrieving a single task from the API. /tasks/{id}
+ *    (check the remove function)
+ */
 export async function read() {
   try {
     const endpoint = '/tasks';
@@ -27,7 +33,10 @@ export async function read() {
   }
 }
 
-// POST requests
+/**
+ * POST requests
+ * for sending a new task to the API. 
+ */
 export async function add(data) {
   try {
     const endpoint = '/tasks';
@@ -65,7 +74,10 @@ function writeError(error) {
   };
 }
 
-// PUT requests
+/**
+ * PUT requests
+ * for sending an updated task to the API. 
+ */
 export async function update(data) {
   try {
     const endpoint = '/tasks/' + data.id;
@@ -79,10 +91,29 @@ export async function update(data) {
   }
 }
 
-// DELETE requests
+/**
+ * DELETE requests  
+ * for deleting a task from the API.
+ */
 export async function remove(id) {
   try {
     const endpoint = '/tasks/' + id;
+    await axiosInstance.delete(endpoint);
+    return {
+      success: true
+    };
+  }
+  catch (error) {
+    return writeError(error);
+  }
+}
+
+/**
+ * for deleting all tasks from the API.
+ */
+export async function clear() {
+  try {
+    const endpoint = '/tasks/all';
     await axiosInstance.delete(endpoint);
     return {
       success: true

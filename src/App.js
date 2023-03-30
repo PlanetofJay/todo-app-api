@@ -85,8 +85,14 @@ export default function App() {
   }
 
   // Removes all tasks form the list.
-  const handleClearTasks = () => {
+  const handleClearTasks = async () => {
     setTasks([]);
+
+    // Update the server.
+    const result = await restAPI.clear();
+    if (!result.success) {
+      setError(result.error);
+    }
   }
 
   return (

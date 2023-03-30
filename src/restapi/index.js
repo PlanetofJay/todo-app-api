@@ -7,6 +7,16 @@ export async function read() {
     console.log('Response:', response);
   }
   catch (error) {
-    console.log('Read Error:', error);
+    let message;
+    const status = error.response?.status;
+    switch (status) {
+      case 401:
+        message = 'It failed to authenticate your user. Please, check your credentials.';
+        break;
+
+      case 404:
+        message = 'It was not possible to connect with the server. Please, contact the system administrator.';
+        break;
+    }
   }
 }

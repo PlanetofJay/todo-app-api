@@ -1,15 +1,21 @@
 import axios from "axios";
 
+/**
+ * Set your authorization, baseURL and endpoint.
+ */
+
 const axiosInstance = axios.create({
   headers: {
-    authorization: 'basic ' // Set yours
-  }
+    authorization: ''
+  },
+  timeout: 5000,
+  baseURL: 'https://jsonplaceholder.typicode.com'
 });
 
 export async function read() {
   try {
-    const endpoint = 'https://jsonplaceholder.typicode.com/posts'; // Set yours
-    const response = await axios.get(endpoint);
+    const endpoint = '/posts';
+    const response = await axiosInstance.get(endpoint);
     return {
       success: true,
       data: response.data
@@ -22,8 +28,8 @@ export async function read() {
 
 export async function add(data) {
   try {
-    const endpoint = 'https://jsonplaceholder.typicode.com/posts'; // Set yours
-    const response = await axiosInstance.post(endpoint, data);
+    const endpoint = '/posts';
+    await axiosInstance.post(endpoint, data);
     return {
       success: true
     };
@@ -34,6 +40,8 @@ export async function add(data) {
 }
 
 function writeError(error) {
+  console.log('Error:', error);
+
   let message;
   const status = error.response?.status;
   switch (status) {

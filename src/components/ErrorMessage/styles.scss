@@ -1,0 +1,16 @@
+@import '../../styles/variables.scss';
+
+.error-message-component {
+  margin: 1.5rem 0 3rem;
+
+  .title {
+    color: $red-color;
+    font-weight: bold;
+    font-size: 1.5rem;
+  }
+
+  .text {
+    color: $gray-dark-color;
+    font-size: 1rem;
+  }
+}

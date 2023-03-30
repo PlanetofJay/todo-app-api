@@ -15,6 +15,7 @@ import HelpChange from "./components/Help/Changing";
 import NotFound from "./components/NotFound";
 
 import Spinner from "./components/Spinner";
+import ErrorMessage from "./components/ErrorMessage";
 
 export default function App() {
 
@@ -63,6 +64,7 @@ export default function App() {
       <Header />
       <main className="page">
         <Spinner show={false} />
+        <ErrorMessage error='' />
 
         {/* Set the app routes */}
         <Routes>

@@ -78,3 +78,17 @@ export async function update(data) {
     return writeError(error);
   }
 }
+
+// DELETE requests
+export async function remove(id) {
+  try {
+    const endpoint = '/tasks/' + id;
+    await axiosInstance.delete(endpoint);
+    return {
+      success: true
+    };
+  }
+  catch (error) {
+    return writeError(error);
+  }
+}

@@ -69,11 +69,19 @@ export default function App() {
   }
 
   // Removes a task from the list.
-  const handleTaskRemove = (id) => {
+  const handleTaskRemove = async (id) => {
+
+    // Update the state.
     const filteredTasks = tasks.filter(
       (task) => task.id !== id
     );
     setTasks(filteredTasks);
+
+    // Update the server.
+    const result = await restAPI.remove(id);
+    if (!result.success) {
+      setError(result.error);
+    }
   }
 
   // Removes all tasks form the list.

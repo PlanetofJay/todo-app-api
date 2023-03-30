@@ -12,9 +12,10 @@ const axiosInstance = axios.create({
   baseURL: 'https://jsonplaceholder.typicode.com'
 });
 
+// GET requests
 export async function read() {
   try {
-    const endpoint = '/posts';
+    const endpoint = '/tasks';
     const response = await axiosInstance.get(endpoint);
     return {
       success: true,
@@ -26,9 +27,10 @@ export async function read() {
   }
 }
 
+// POST requests
 export async function add(data) {
   try {
-    const endpoint = '/posts';
+    const endpoint = '/tasks';
     await axiosInstance.post(endpoint, data);
     return {
       success: true
@@ -61,4 +63,18 @@ function writeError(error) {
     success: false,
     error: message
   };
+}
+
+// PUT requests
+export async function update(data) {
+  try {
+    const endpoint = '/tasks/' + data.id;
+    await axiosInstance.put(endpoint, data);
+    return {
+      success: true
+    };
+  }
+  catch (error) {
+    return writeError(error);
+  }
 }

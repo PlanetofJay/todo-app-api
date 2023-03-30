@@ -49,7 +49,9 @@ export default function App() {
   }
 
   // Toggles a task status.
-  const handleStatusChange = (id) => {
+  const handleStatusChange = async (id) => {
+
+    // Update the state.
     const updatedTasks = [...tasks];
     updatedTasks.forEach((task) => {
       if (task.id === id) {
@@ -57,6 +59,13 @@ export default function App() {
       }
     });
     setTasks(updatedTasks);
+
+    // Update the server.
+    const data = updatedTasks.find((task) => task.id === id);
+    const result = await restAPI.update(data);
+    if (!result.success) {
+      setError(result.error);
+    }
   }
 
   // Removes a task from the list.
